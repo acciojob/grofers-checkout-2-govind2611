@@ -1,15 +1,15 @@
 //your code here
- // Get all the price elements in the table
-  const priceElements = document.querySelectorAll('[data-ns-test="prices"]');
+ var table = document.querySelector('table');
+ var lastRow = document.createElement('tr');
+ var prices = document.querySelectorAll('[data-ns-test=price]');
+ let sum = 0;
+ for(let i = 0; i < prices.length; i++) {
+  sum += parseInt(prices[i].textContent);
+ }
+ var child = document.createElement("td");
+ child.setAttribute('data-ns-test', 'grandTotal');
+ 
 
-  // Initialize a variable to store the total price
-  let totalPrice = 0;
-
-  // Loop through each price element and add its value to the total price
-  priceElements.forEach(priceElement => {
-    totalPrice += parseFloat(priceElement.textContent);
-  });
-
-  // Set the grand total element to the total price
-  const grandTotalElement = document.querySelector('[data-ns-test="grandTotal"]');
-  grandTotalElement.textContent = totalPrice.toFixed(2);
+ child.textContent = sum;
+ lastRow.appendChild(child);
+ table.appendChild(lastRow);
