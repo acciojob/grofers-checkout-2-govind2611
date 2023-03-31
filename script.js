@@ -1,15 +1,15 @@
-//your code here
- var table = document.querySelector('table');
- var lastRow = document.createElement('tr');
- var prices = document.querySelectorAll('[data-ns-test=price]');
- let sum = 0;
- for(let i = 0; i < prices.length; i++) {
-  sum += parseInt(prices[i].textContent);
- }
- var child = document.createElement("td");
- child.setAttribute('data-ns-test', 'grandTotal');
- 
+// Get all the prices listed in the HTML table
+const prices = document.querySelectorAll('[data-ns-test="prices"]');
 
- child.textContent = sum;
- lastRow.appendChild(child);
- table.appendChild(lastRow);
+// Calculate the sum of all prices
+let totalPrice = 0;
+prices.forEach(price => {
+  totalPrice += parseFloat(price.textContent);
+});
+
+// Create a new row in the HTML table to display the total price
+const table = document.querySelector('table');
+const newRow = table.insertRow();
+const newCell = newRow.insertCell();
+newCell.setAttribute('data-ns-test', 'grandTotal');
+newCell.textContent = totalPrice.toFixed(2);
