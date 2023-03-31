@@ -1,15 +1,31 @@
-// Get all the prices listed in the HTML table
-const prices = document.querySelectorAll('[data-ns-test="prices"]');
+const getSumBtn = document.createElement("button");
+getSumBtn.append("Get Total Price");
+document.body.appendChild(getSumBtn);
 
-// Calculate the sum of all prices
-let totalPrice = 0;
-prices.forEach(price => {
-  totalPrice += parseFloat(price.textContent);
-});
+const newRow = document.createElement('tr');
+const totalCell = document.createElement('td');
+totalCell.setAttribute('id', 'ans')
 
-// Create a new row in the HTML table to display the total price
+newRow.appendChild(totalCell);
+
+
+// Add the new row to the table
 const table = document.querySelector('table');
-const newRow = table.insertRow();
-const newCell = newRow.insertCell();
-newCell.setAttribute('data-ns-test', 'grandTotal');
-newCell.textContent = totalPrice.toFixed(2);
+table.appendChild(newRow);
+let total = 0;
+const getSum = () => {
+//Add your code here
+    let price = document.querySelectorAll(".price");
+    // let total = 0;
+    for (let i = 0; i < price.length; i++) {
+        total += parseFloat(price[i].innerHTML);
+       
+    }   
+    // console.log(total)
+    // return total;
+    return totalCell.innerHTML = total;
+    
+};
+
+    
+getSumBtn.addEventListener("click", getSum);
