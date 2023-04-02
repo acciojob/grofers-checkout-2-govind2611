@@ -1,31 +1,14 @@
-const getSumBtn = document.createElement("button");
-getSumBtn.append("Get Total Price");
-document.body.appendChild(getSumBtn);
+var table = document.querySelector('table');
+ var lastRow = document.createElement('tr');
+ var prices = document.querySelectorAll('[data-ns-test=price]');
+ let sum = 0;
+ for(let i = 0; i < prices.length; i++) {
+  sum += parseInt(prices[i].textContent);
+ }
+ var child = document.createElement("td");
+ child.setAttribute('data-ns-test', 'grandTotal');
+ 
 
-const newRow = document.createElement('tr');
-const totalCell = document.createElement('td');
-totalCell.setAttribute('id', 'ans')
-
-newRow.appendChild(totalCell);
-
-
-// Add the new row to the table
-const table = document.querySelector('table');
-table.appendChild(newRow);
-let total = 0;
-const getSum = () => {
-//Add your code here
-    let price = document.querySelectorAll(".price");
-    // let total = 0;
-    for (let i = 0; i < price.length; i++) {
-        total += parseFloat(price[i].innerHTML);
-       
-    }   
-    // console.log(total)
-    // return total;
-    return totalCell.innerHTML = total;
-    
-};
-
-    
-getSumBtn.addEventListener("click", getSum);
+ child.textContent = sum;
+ lastRow.appendChild(child);
+ table.appendChild(lastRow);
